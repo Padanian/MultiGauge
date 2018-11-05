@@ -133,19 +133,18 @@
             e.Graphics.DrawLine(apen, x1, y1, x1 + 1, y1)
         Next
         Dim i As Integer = 0
-        For num As Double = -5 / 4 * Pi To 1 / 4 * Pi Step 0.15 * Pi
-            x1 = Convert.ToInt32(radius * Math.Cos(num) + centreX)
-            y1 = Convert.ToInt32(radius * Math.Sin(num) + centreY)
-            x2 = Convert.ToInt32(3 / 4 * radius * Math.Cos(num) + centreX)
-            y2 = Convert.ToInt32(3 / 4 * radius * Math.Sin(num) + centreY)
+            For num As Double = -5 / 4 * Pi To 1 / 4 * Pi Step 0.15 * Pi
+                x1 = Convert.ToInt32(radius * Math.Cos(num) + centreX)
+                y1 = Convert.ToInt32(radius * Math.Sin(num) + centreY)
+                x2 = Convert.ToInt32(3 / 4 * radius * Math.Cos(num) + centreX)
+                y2 = Convert.ToInt32(3 / 4 * radius * Math.Sin(num) + centreY)
 
-            e.Graphics.DrawLine(apen, x1, y1, x2, y2)
-            addlabel(i)
-            i += 1
-        Next
+                e.Graphics.DrawLine(apen, x1, y1, x2, y2)
+                addlabel(i)
+                i += 1
+            Next
+
         redrawLine(e)
-
-
 
         If isLedVisible And WarningActive And Not blinkingLedTimer.Enabled Then
             With blinkingLedTimer
@@ -159,15 +158,13 @@
                 .Stop()
                 pbLED.Visible = False
             End With
-
-
         End If
 
     End Sub
     Private Sub addlabel(ByVal i As Integer)
         Dim lblScale As New Label
         With lblScale
-            .Location = New Point(x2 - 3, y2 - 3)
+            .Location = New Point(x2 - 5, y2 - 3)
             .Size = New Size(18, 10)
             .Text = (maximum - minimum) / 10 * (i.ToString.PadLeft(2, "0"))
             .Font = New Font("Segoe UI", 5, FontStyle.Regular)
@@ -195,6 +192,7 @@
         minimum = 0
         maximum = 100
         value = 0
+
     End Sub
     Public Sub redrawLine(e As PaintEventArgs)
         Dim Lend As Double = 1 / 4 * Pi - 6 / 4 * Pi * ((maximum - value) / (maximum - minimum))
