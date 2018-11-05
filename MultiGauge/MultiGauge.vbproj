@@ -126,5 +126,11 @@
   <ItemGroup>
     <None Include="Resources\ledred.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8px-Location_dot_red.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1024px-Location_dot_red.svg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

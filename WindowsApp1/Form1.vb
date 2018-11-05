@@ -1,6 +1,6 @@
 ﻿Public Class Form1
     Dim m1 As New MultiGauge.MultiGauge
-    Dim m2 As New NumericUpDown
+    Dim m2 As New TrackBar
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +15,7 @@
         With m2
             .Location = New Point(150, 50)
             .Name = "m2"
+            .Maximum = 100
         End With
 
         Me.Controls.Add(m2)

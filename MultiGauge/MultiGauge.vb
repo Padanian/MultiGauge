@@ -16,6 +16,7 @@
     Dim radius As Double = 30
     Dim blinkingLedTimer As New Timer
 
+
     Public Property WarningThreshold As Integer
         Get
             WarningThreshold = m_WarningThreshold
@@ -126,7 +127,7 @@
     End Property
     Private Sub GaugePaint(sender As Object, e As PaintEventArgs) Handles Me.Paint
 
-        For num As Double = -5 / 4 * Pi To 1 / 4 * Pi Step 0.05
+        For num As Double = -5 / 4 * Pi To 1 / 4 * Pi Step 0.075
             x1 = Convert.ToInt32(radius * Math.Cos(num) + centreX)
             y1 = Convert.ToInt32(radius * Math.Sin(num) + centreY)
             e.Graphics.DrawLine(apen, x1, y1, x1 + 1, y1)
@@ -139,15 +140,14 @@
             y2 = Convert.ToInt32(3 / 4 * radius * Math.Sin(num) + centreY)
 
             e.Graphics.DrawLine(apen, x1, y1, x2, y2)
-
             addlabel(i)
             i += 1
         Next
         redrawLine(e)
-        RemoveHandler blinkingLedTimer.Tick, AddressOf blinkingLED
-        If isLedVisible Then drawLED(e)
+
+
+
         If isLedVisible And WarningActive And Not blinkingLedTimer.Enabled Then
-            AddHandler blinkingLedTimer.Tick, AddressOf blinkingLED
             With blinkingLedTimer
                 .Interval = 1000
                 .Enabled = True
@@ -157,6 +157,7 @@
             With blinkingLedTimer
                 .Enabled = False
                 .Stop()
+                pbLED.Visible = False
             End With
 
 
@@ -188,6 +189,7 @@
 
         ' La chiamata è richiesta dalla finestra di progettazione.
         InitializeComponent()
+        AddHandler blinkingLedTimer.Tick, AddressOf blinkingLED
 
         ' Aggiungere le eventuali istruzioni di inizializzazione dopo la chiamata a InitializeComponent().
         minimum = 0
@@ -206,23 +208,9 @@
         e.Graphics.DrawLine(lpen, xp1, yp1, xp2, yp2)
 
     End Sub
-    Public Sub drawLED(e As PaintEventArgs)
-
-        If WarningActive And DateTime.Now.Second Mod 2 = 0 Then
-            e.Graphics.DrawEllipse(Pens.Black, 0, 52, 10, 10)
-            e.Graphics.FillEllipse(Brushes.LightGray, 1, 53, 8, 8)
-        ElseIf WarningActive And DateTime.Now.Second Mod 2 = 1 Then
-            e.Graphics.DrawEllipse(Pens.Black, 0, 52, 10, 10)
-            e.Graphics.FillEllipse(Brushes.Red, 1, 53, 8, 8)
-        ElseIf Not WarningActive Then
-            e.Graphics.DrawEllipse(Pens.Black, 0, 52, 10, 10)
-            e.Graphics.FillEllipse(Brushes.LightGray, 1, 53, 8, 8)
-        End If
-
-    End Sub
     Private Sub blinkingLED()
 
-        Me.Refresh()
+        pbLED.Visible = Not pbLED.Visible
 
     End Sub
 End Class

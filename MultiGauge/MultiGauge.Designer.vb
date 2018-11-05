@@ -22,15 +22,32 @@ Partial Class MultiGauge
     'Non modificarla mediante l'editor del codice.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.pbLED = New System.Windows.Forms.PictureBox()
+        CType(Me.pbLED, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'pbLED
+        '
+        Me.pbLED.Image = Global.MultiGauge.My.Resources.Resources._1024px_Location_dot_red_svg
+        Me.pbLED.Location = New System.Drawing.Point(0, 54)
+        Me.pbLED.Name = "pbLED"
+        Me.pbLED.Size = New System.Drawing.Size(10, 10)
+        Me.pbLED.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbLED.TabIndex = 0
+        Me.pbLED.TabStop = False
+        Me.pbLED.Visible = False
         '
         'MultiGauge
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.pbLED)
         Me.Name = "MultiGauge"
         Me.Size = New System.Drawing.Size(64, 64)
+        CType(Me.pbLED, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents pbLED As PictureBox
 End Class
