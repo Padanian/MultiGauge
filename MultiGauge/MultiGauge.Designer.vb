@@ -42,6 +42,7 @@ Partial Class MultiGauge
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.pbLED)
+        Me.DoubleBuffered = True
         Me.Name = "MultiGauge"
         Me.Size = New System.Drawing.Size(64, 64)
         CType(Me.pbLED, System.ComponentModel.ISupportInitialize).EndInit()

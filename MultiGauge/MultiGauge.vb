@@ -2,7 +2,7 @@
     Const Pi As Double = Math.PI
     Dim x1, y1, x2, y2 As Integer
     Dim xp1, yp1, xp2, yp2 As Int32
-    Private m_value As Integer
+    Private m_value As Decimal
     Private m_minimum As Integer
     Private m_maximum As Integer
     Private m_WarningThreshold As Integer = 80
@@ -39,11 +39,11 @@
             Me.Refresh()
         End Set
     End Property
-    Public Property value As Integer
+    Public Property value As Decimal
         Get
             value = m_value
         End Get
-        Set(value As Integer)
+        Set(value As Decimal)
             If value > maximum Or value < minimum Then
                 MsgBox("Value needs to be between Min and Max")
                 Exit Property
@@ -166,7 +166,7 @@
         With lblScale
             .Location = New Point(x2 - 5, y2 - 3)
             .Size = New Size(18, 10)
-            .Text = (maximum - minimum) / 10 * (i.ToString.PadLeft(2, "0"))
+            .Text = (maximum - minimum) / 10 * (i.ToString.PadLeft(2, "0")) + minimum
             .Font = New Font("Segoe UI", 5, FontStyle.Regular)
             .ForeColor = Color.Black
             .BackColor = Color.Transparent
